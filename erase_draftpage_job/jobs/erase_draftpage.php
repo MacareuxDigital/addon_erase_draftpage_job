@@ -7,6 +7,7 @@ use ZendQueue\Queue as ZendQueue;
 use ZendQueue\Message as ZendQueueMessage;
 use Exception;
 use Concrete\Core\Page\Page;
+use Core;
 
 class EraseDraftpage extends QueueableJob
 {
@@ -24,8 +25,13 @@ class EraseDraftpage extends QueueableJob
 
     public function start(ZendQueue $q)
     {
-        $site = \Core::make('site')->getSite();
-        $pageDrafts = Page::getDrafts($site);
+        $currentVersion = Core::make('config')->get('concrete.version');
+        if (version_compare($currentVersion , '8.2.0', 'lt')) {
+            $pageDrafts = Page::getDrafts();
+        } else {
+            $site = Core::make('site')->getSite();
+            $pageDrafts = Page::getDrafts($site);
+        }
         foreach ($pageDrafts as $pageDraft) {
             $q->send($pageDraft->getCollectionID());
         }
