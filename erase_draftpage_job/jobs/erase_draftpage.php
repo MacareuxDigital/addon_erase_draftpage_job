@@ -24,7 +24,8 @@ class EraseDraftpage extends QueueableJob
 
     public function start(ZendQueue $q)
     {
-        $pageDrafts = Page::getDrafts();
+        $site = \Core::make('site')->getSite();
+        $pageDrafts = Page::getDrafts($site);
         foreach ($pageDrafts as $pageDraft) {
             $q->send($pageDraft->getCollectionID());
         }
