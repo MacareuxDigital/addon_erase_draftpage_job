@@ -8,7 +8,7 @@ class Controller extends Package
 {
     protected $pkgHandle = 'erase_draftpage_job';
     protected $appVersionRequired = '5.7.4.2';
-    protected $pkgVersion = '0.9.1';
+    protected $pkgVersion = '1.0.0';
     protected $pkgAutoloaderMapCoreExtensions = true;
 
     public function getPackageDescription()
