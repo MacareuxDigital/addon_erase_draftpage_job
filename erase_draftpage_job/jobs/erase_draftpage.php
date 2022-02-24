@@ -2,9 +2,9 @@
 
 namespace Concrete\Package\EraseDraftpageJob\Job;
 
-use QueueableJob;
-use ZendQueue\Queue as ZendQueue;
-use ZendQueue\Message as ZendQueueMessage;
+use Concrete\Core\Job\QueueableJob;
+use Concrete\Core\Job\JobQueue as ZendQueue;
+use Concrete\Core\Job\JobQueueMessage as ZendQueueMessage;
 use Exception;
 use Concrete\Core\Page\Page;
 use Core;
